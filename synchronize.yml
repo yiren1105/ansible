@@ -1,0 +1,15 @@
+- name: Example of synchronize module in Ansible
+  hosts: serverB
+  tasks:
+    # This can be used when copying a file from a 3rd server to the target machine.
+    - name: Copy a file from serverA to serverB
+      synchronize: 
+        src: /path_from_serverA/file
+        dest: /path_to_serverB
+      delegate_to: serverA
+    
+      
+      
+      
+      
+  
