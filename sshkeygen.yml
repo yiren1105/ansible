@@ -1,0 +1,42 @@
+
+- hosts: all
+  tasks:
+    - name: install pexpect
+      apt: 
+         name: "python-pexpect"
+
+    - name: generate ssh key
+      expect:
+        echo: yes
+        command: ssh-keygen
+        responses:
+          (.*)in which to save the key(.*): ''
+          (.*)Enter passphrase(.*): ''
+          (.*)Enter same passphrase again(.*): ''
+      register: expect_result 
+      tags: ssh
+
+    - name: create a new file
+      file:
+        path: /root/.ssh/authorized_keys
+        state: touch
+        mode: 0600
+      tags: ch
+
+    - name: add ssh key
+      lineinfile:
+        path: /root/.ssh/authorized_keys
+        line: >
+          {{controller_ssh_pub}}
+      tags: ch
+      
+    - name: change folder mode 
+      file: 
+        path: /root/.ssh
+        state: directory
+        mode: 0700
+      tags: ch
+
+
+
+          
