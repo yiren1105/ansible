@@ -1,0 +1,10 @@
+- name: Example of synchronize pull module in Ansible
+  hosts: ServerA
+  tasks:
+    # This can be used when copying file from the current node to a 3rd machine. 
+    - name: Transfer file from ServerA to ServerB
+      synchronize:
+        src: /path/on/server_a
+        dest: /path/on/server_b
+        mode: pull
+      delegate_to: ServerB
