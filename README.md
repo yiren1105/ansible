@@ -10,4 +10,5 @@ This can be used when copying file from a 3rd machine to the current node.
 
 ## synchronize_pull.yml
 This can be used when copying file from the current node to a 3rd machine. 
+test for fork
 
