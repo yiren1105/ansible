@@ -39,11 +39,11 @@ jobs:
       - name: Build the Docker image
         run: docker build . --file Dockerfile --tag my-image-name:$(date +%s)
       - name: Build the Docker image
-        uses: docker/build-push-action@v2
+        uses: docker/build-push-action@v1.1.0
         with: 
           username: ${{ secrets.REGISTRY_USERNAME}}
           password: ${{ secrets.REGISTRY_TOKEN}}
           registry: hub.docker.com/repository/docker
           repository: yiren1105/github-action
           dockerfile: "./Dockerfile"
-          tag_with_ref: true
+          tags: ${{env.GIT_SHORT_SHA}}
