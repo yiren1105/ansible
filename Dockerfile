@@ -1,7 +1,7 @@
-FROM python:3
-ADD helloworld.py /
-RUN pip install flask
-RUN pip install flask_restful
-EXPOSE 3333
-CMD [ "python", "./helloworld.py"]
- 
+FROM ubuntu
+RUN apt-get update
+RUN apt-get install -y python
+ADD hello.py /home/hello.py
+ADD a.py /home/a.py
+CMD ["/home/hello.py"]
+ENTRYPOINT ["python"]
