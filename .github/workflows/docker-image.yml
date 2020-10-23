@@ -6,31 +6,43 @@ on:
 
 
 jobs:
-
-  build:
-
+  push_to_registry:
+    name: Push Docker image to Docker Hub
     runs-on: ubuntu-latest
-
     steps:
-      - name: Checkout
+      - name: Check out the repo
         uses: actions/checkout@v2
-        
-
-        
-      - name: Login to DockerHub
-        uses: docker/login-action@v1
+      - name: Push to Docker Hub
+        uses: docker/build-push-action@v1
         with:
           username: ${{ secrets.REGISTRY_USERNAME }}
           password: ${{ secrets.REGISTRY_TOKEN }}
-          
-      - name: Build the Docker image
-        run: docker build . --file Dockerfile --tag ${{ secrets.REGISTRY_USERNAME }}/github-action:$(date +%s)
+          repository: yiren1105/github-action
+          tag_with_ref: true
+#   build:
+
+#     runs-on: ubuntu-latest
+
+#     steps:
+#       - name: Checkout
+#         uses: actions/checkout@v2
         
-      - name: Push the Docker image
-        uses: mr-smithers-excellent/docker-build-push@v4
-        with: 
-          name: yiren1105/github-action
-          registry: docker.io  
-          username: ${{ secrets.REGISTRY_USERNAME }}
-          password: ${{ secrets.REGISTRY_TOKEN }}
-          dockerfile: ./Dockerfile
+
+        
+#       - name: Login to DockerHub
+#         uses: docker/login-action@v1
+#         with:
+#           username: ${{ secrets.REGISTRY_USERNAME }}
+#           password: ${{ secrets.REGISTRY_TOKEN }}
+          
+#       - name: Build the Docker image
+#         run: docker build . --file Dockerfile --tag ${{ secrets.REGISTRY_USERNAME }}/github-action:$(date +%s)
+        
+#       - name: Push the Docker image
+#         uses: mr-smithers-excellent/docker-build-push@v4
+#         with: 
+#           name: yiren1105/github-action
+#           registry: docker.io  
+#           username: ${{ secrets.REGISTRY_USERNAME }}
+#           password: ${{ secrets.REGISTRY_TOKEN }}
+#           dockerfile: ./Dockerfile
