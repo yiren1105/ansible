@@ -17,7 +17,7 @@ jobs:
     - name: Build the Docker image
       uses: docker/build-push-action@v1
       with: 
-        username: ${{ serects.REGISTRY_USERNAME}}
-        password: ${{ serects.REGISTRY_PASSWORD}}
+        username: ${{ secrets.REGISTRY_USERNAME}}
+        password: ${{ secrets.REGISTRY_PASSWORD}}
         repository: yiren1105/github-action
         tag_with_ref: true
