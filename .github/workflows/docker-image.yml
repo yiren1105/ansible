@@ -19,4 +19,5 @@ jobs:
         username: ${{ secrets.REGISTRY_USERNAME}}
         password: ${{ secrets.REGISTRY_PASSWORD}}
         repository: yiren1105/github-action
+        dockerfile: "./Dockerfile"
         tag_with_ref: true
