@@ -15,6 +15,12 @@ jobs:
           ref: ${{github.ref}}
       - name: commit and push 
         run: sh test.sh 
+        
+      - name: GitHub Commit & Push
+        uses: actions-js/push@v1.2
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+
       - name: Send slack messages
         uses: 8398a7/action-slack@v3
         with:
