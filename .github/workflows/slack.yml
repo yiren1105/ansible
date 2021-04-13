@@ -13,7 +13,8 @@ jobs:
         uses: actions/checkout@v2
         with:
           ref: ${{github.ref}}
-
+      - name: commit and push 
+        run: sh test.sh 
       - name: Send slack messages
         uses: 8398a7/action-slack@v3
         with:
